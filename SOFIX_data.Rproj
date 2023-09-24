@@ -1,0 +1,32 @@
+library("ggplot2")
+library("PerformanceAnalytics")
+library("quantmod")
+libeary("readr")
+
+
+library(readr)
+BGALBPE <- read_csv("C:/Users/Mi6kite/Desktop/finansi/SOFIX Data/BGALBPE.csv")
+View(BGALBPE)
+BGSFAPE <- read_csv("C:/Users/Mi6kite/Desktop/finansi/SOFIX Data/BGSFAPE.csv")
+BREFPE <- read_csv("C:/Users/Mi6kite/Desktop/finansi/SOFIX Data/BREFPE.csv")
+CCBPE <- read_csv("C:/Users/Mi6kite/Desktop/finansi/SOFIX Data/CCBPE.csv")
+CHIMPE <- read_csv("C:/Users/Mi6kite/Desktop/finansi/SOFIX Data/CHIMPE.csv")
+DUHPE <- read_csv("C:/Users/Mi6kite/Desktop/finansi/SOFIX Data/DUHPE.csv")
+EUBGPE <- read_csv("C:/Users/Mi6kite/Desktop/finansi/SOFIX Data/EUBGPE.csv")
+FIBPE <- read_csv("C:/Users/Mi6kite/Desktop/finansi/SOFIX Data/FIBPE.csv")
+ATERPE <- read_csv("C:/Users/Mi6kite/Desktop/finansi/SOFIX Data/ATERPE.csv")
+
+BGSFAPE <- na.omit(BGSFAPE)
+BGSFAPE <- BGSFAPE[-c(12),]
+as.data.frame.numeric(BGSFAPE$`P/E`)
+summary(lm(BGSFAPE$annual_returns ~ BGSFAPE$`P/E`))
+plot(lm(BGSFAPE$annual_returns ~ BGSFAPE$`P/E`))
+plot(BGSFAPE$annual_returns ~ BGSFAPE$`P/E`)
+regression <- lm(BGSFAPE$annual_returns ~ BGSFAPE$`P/E`)
+
+ggplot(data =BGSFAPE, aes (x=BGSFAPE$`P/E` , y = BGSFAPE$annual_returns) ) +
+  geom_point() +
+  geom_rug(col="steelblue",alpha=0.1, size=1.5)
+
+plot(lm(BGSFAPE$annual_returns ~ BGSFAPE$`P/E`))
+abline(lm(BGSFAPE$annual_returns ~ BGSFAPE$`P/E`))
